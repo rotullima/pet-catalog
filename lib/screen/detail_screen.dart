@@ -12,65 +12,126 @@ class DetailScreen extends StatelessWidget {
       appBar: AppBar(
         title: Text(
           pet.name,
-          style: const TextStyle(fontWeight: FontWeight.bold),
+          style: const TextStyle(
+            fontWeight: FontWeight.bold,
+            fontFamily: "Poppins",
+          ),
         ),
         backgroundColor: const Color(0xFFFF9934),
+        centerTitle: true,
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.vertical(
+            bottom: Radius.circular(20),
+          ),
+        ),
+        elevation: 4,
       ),
       body: SingleChildScrollView(
+        padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // Gambar
+            // 🖼️ Gambar responsif
             ClipRRect(
-              borderRadius: const BorderRadius.vertical(
-                bottom: Radius.circular(24),
+              borderRadius: BorderRadius.circular(20),
+              child: AspectRatio(
+                aspectRatio: 16 / 9, // bikin proporsional
+                child: Image.asset(
+                  pet.image,
+                  fit: BoxFit.cover,
+                ),
               ),
-              child: Image.asset(pet.image, height: 250, fit: BoxFit.cover),
             ),
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
 
-            // Info
-            Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    pet.name,
-                    style: const TextStyle(
-                      fontSize: 24,
-                      fontWeight: FontWeight.bold,
-                      color: Color(0xFF8C5826), // wood brown
+            // 🐾 Type (Jenis Hewan)
+            Card(
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Row(
+                  children: [
+                    const Icon(Icons.pets, color: Color(0xFF8C5826)),
+                    const SizedBox(width: 10),
+                    Text(
+                      pet.type,
+                      style: const TextStyle(
+                        fontSize: 22,
+                        fontWeight: FontWeight.bold,
+                        color: Color(0xFF8C5826),
+                      ),
                     ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    pet.type,
-                    style: const TextStyle(fontSize: 18, color: Colors.black87),
-                  ),
-                  const SizedBox(height: 16),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
 
-                  const Text(
-                    "Karakteristik",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    pet.character,
-                    style: TextStyle(fontSize: 16, color: Colors.grey[700]),
-                  ),
-                  const SizedBox(height: 16),
+            // ✨ Karakteristik
+            Card(
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Karakteristik",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Poppins",
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      pet.character,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey[800],
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            const SizedBox(height: 20),
 
-                  const Text(
-                    "Tips Perawatan",
-                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                  ),
-                  const SizedBox(height: 8),
-                  Text(
-                    pet.care,
-                    style: TextStyle(fontSize: 16, color: Colors.grey),
-                  ),
-                ],
+            // 🛠️ Tips Perawatan
+            Card(
+              elevation: 3,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(16),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const Text(
+                      "Tips Perawatan",
+                      style: TextStyle(
+                        fontSize: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: "Poppins",
+                      ),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      pet.care,
+                      style: TextStyle(
+                        fontSize: 16,
+                        color: Colors.grey[800],
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ),
           ],

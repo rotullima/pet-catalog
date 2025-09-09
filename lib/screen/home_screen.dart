@@ -71,13 +71,22 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text(
-          "Pet Catalog",
-          style: TextStyle(fontFamily: "Poppins", fontWeight: FontWeight.bold),
+      appBar: PreferredSize(
+        preferredSize: const Size.fromHeight(60),
+        child: AppBar(
+          title: const Text(
+        "Pet Catalog",
+        style: TextStyle(fontFamily: "Poppins", fontWeight: FontWeight.bold),
+          ),
+          backgroundColor: const Color(0xFFFF9934), // warm orange
+          centerTitle: true,
+          shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+          bottom: Radius.circular(24),
         ),
-        backgroundColor: const Color(0xFFFF9934), // warm orange
-        centerTitle: true,
+          ),
+          elevation: 4,
+        ),
       ),
       body: Column(
         children: [
