@@ -13,7 +13,7 @@ class PetCard extends StatelessWidget {
       onTap: onTap,
       borderRadius: BorderRadius.circular(16),
       child: Card(
-        color: const Color(0xFFE1F1F2), 
+        color: const Color(0xFFFFF3E9), 
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
         elevation: 3,
         child: Column(
@@ -39,7 +39,7 @@ class PetCard extends StatelessWidget {
                       fontFamily: "Poppins",
                       fontWeight: FontWeight.bold,
                       fontSize: 16,
-                      color: Color(0xFF8C5826), // wood brown
+                      color: Color(0xFF8C5826), 
                     ),
                   ),
                   Text(

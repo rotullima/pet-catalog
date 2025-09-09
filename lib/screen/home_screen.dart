@@ -16,36 +16,36 @@ class _HomeScreenState extends State<HomeScreen> {
       name: "Grange",
       type: "Cat",
       image: "assets/images/cat.jpg",
-      character: "Manja, suka tidur di sofa",
-      care: "Kasih makan 2x sehari dan sediakan tempat tidur hangat",
+      character: "Affectionate, loves sleeping on the sofa",
+      care: "Feed twice a day and provide a warm bed",
     ),
     Pet(
       name: "Mapoy",
       type: "Dog",
       image: "assets/images/dog.jpg",
-      character: "Setia, suka diajak jalan-jalan",
-      care: "Ajak olahraga rutin, beri vaksin, dan kasih tulang mainan",
+      character: "Loyal, loves going for walks",
+      care: "Take on regular walks, give vaccines, and provide chew toys",
     ),
     Pet(
       name: "Cepi",
       type: "Capybara",
       image: "assets/images/capybara.jpg",
-      character: "Tenang, suka berendam di air",
-      care: "Sediakan kolam kecil dan beri sayuran segar setiap hari",
+      character: "Calm, enjoys soaking in water",
+      care: "Provide a small pool and fresh vegetables daily",
     ),
     Pet(
       name: "Milty",
       type: "Cow",
       image: "assets/images/cow.jpg",
-      character: "Sabar, jinak, suka makan rumput",
-      care: "Kasih rumput segar, jaga kebersihan kandang",
+      character: "Gentle, tame, loves eating grass",
+      care: "Give fresh grass and keep the barn clean",
     ),
     Pet(
       name: "Toothless",
       type: "Dragon",
       image: "assets/images/dragon.png",
-      character: "Kuat, bisa terbang, setia dengan pemilik",
-      care: "Butuh ruang luas, kasih ikan bakar, jangan lupa ajak terbang sore",
+      character: "Strong, can fly, loyal to its owner",
+      care: "Needs a large space, feed fresh fish, and take evening flights",
     ),
   ];
 
@@ -75,32 +75,38 @@ class _HomeScreenState extends State<HomeScreen> {
         preferredSize: const Size.fromHeight(60),
         child: AppBar(
           title: const Text(
-        "Pet Catalog",
-        style: TextStyle(fontFamily: "Poppins", fontWeight: FontWeight.bold),
+            "Pet Catalog",
+            style: TextStyle(
+              fontFamily: "Poppins",
+              fontWeight: FontWeight.bold,
+            ),
           ),
-          backgroundColor: const Color(0xFFFF9934), // warm orange
+          backgroundColor: const Color(0xFFFF9934),
           centerTitle: true,
           shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(
-          bottom: Radius.circular(24),
-        ),
+            borderRadius: BorderRadius.vertical(bottom: Radius.circular(24)),
           ),
           elevation: 4,
         ),
       ),
       body: Column(
         children: [
-          // 🔎 Search bar
+          // Search bar
           Padding(
             padding: const EdgeInsets.all(12.0),
             child: TextField(
               controller: searchController,
               onChanged: _filterPets,
               decoration: InputDecoration(
-                hintText: "Cari hewan peliharaan...",
+                hintText: "Find a pet...",
                 prefixIcon: const Icon(Icons.search),
                 filled: true,
-                fillColor: const Color(0xFFE1F1F2), // light gray
+                fillColor: const Color.fromARGB(
+                  255,
+                  247,
+                  218,
+                  196,
+                ), // light gray
                 border: OutlineInputBorder(
                   borderRadius: BorderRadius.circular(12),
                   borderSide: BorderSide.none,
@@ -109,25 +115,25 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
           ),
 
-          // 🐾 Grid daftar hewan
+          // Grid daftar hewan
           Expanded(
             child: Padding(
               padding: const EdgeInsets.all(12.0),
               child: filteredPets.isEmpty
                   ? const Center(
                       child: Text(
-                        "Hewan tidak ditemukan 🐾",
+                        "Pets not found 🐾",
                         style: TextStyle(fontFamily: "Poppins"),
                       ),
                     )
                   : GridView.builder(
                       gridDelegate:
                           const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 2,
-                        crossAxisSpacing: 12,
-                        mainAxisSpacing: 12,
-                        childAspectRatio: 1,
-                      ),
+                            crossAxisCount: 2,
+                            crossAxisSpacing: 12,
+                            mainAxisSpacing: 12,
+                            childAspectRatio: 1,
+                          ),
                       itemCount: filteredPets.length,
                       itemBuilder: (context, index) {
                         return PetCard(

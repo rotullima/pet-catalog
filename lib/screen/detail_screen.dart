@@ -31,11 +31,11 @@ class DetailScreen extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            // 🖼️ Gambar responsif
+            // gambar hewan
             ClipRRect(
               borderRadius: BorderRadius.circular(20),
               child: AspectRatio(
-                aspectRatio: 16 / 9, // bikin proporsional
+                aspectRatio: 16 / 9, 
                 child: Image.asset(
                   pet.image,
                   fit: BoxFit.cover,
@@ -44,7 +44,7 @@ class DetailScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
-            // 🐾 Type (Jenis Hewan)
+            // type
             Card(
               elevation: 3,
               shape: RoundedRectangleBorder(
@@ -70,7 +70,7 @@ class DetailScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
-            // ✨ Karakteristik
+            // chara
             Card(
               elevation: 3,
               shape: RoundedRectangleBorder(
@@ -82,7 +82,7 @@ class DetailScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "Karakteristik",
+                      "Characteristic",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
@@ -103,7 +103,7 @@ class DetailScreen extends StatelessWidget {
             ),
             const SizedBox(height: 20),
 
-            // 🛠️ Tips Perawatan
+            // care
             Card(
               elevation: 3,
               shape: RoundedRectangleBorder(
@@ -115,7 +115,7 @@ class DetailScreen extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     const Text(
-                      "Tips Perawatan",
+                      "Care Tips",
                       style: TextStyle(
                         fontSize: 20,
                         fontWeight: FontWeight.bold,
