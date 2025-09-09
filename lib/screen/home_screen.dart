@@ -3,9 +3,14 @@ import '../models/pet.dart';
 import '../widgets/pet_card.dart';
 import 'detail_screen.dart';
 
-class HomeScreen extends StatelessWidget {
-  HomeScreen({super.key});
+class HomeScreen extends StatefulWidget {
+  const HomeScreen({super.key});
 
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final List<Pet> pets = [
     Pet(
       name: "Grange",
@@ -44,6 +49,25 @@ class HomeScreen extends StatelessWidget {
     ),
   ];
 
+  List<Pet> filteredPets = [];
+  final TextEditingController searchController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+    filteredPets = pets; // awalnya semua tampil
+  }
+
+  void _filterPets(String query) {
+    final results = pets.where((pet) {
+      return pet.name.toLowerCase().contains(query.toLowerCase());
+    }).toList();
+
+    setState(() {
+      filteredPets = results;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -55,30 +79,65 @@ class HomeScreen extends StatelessWidget {
         backgroundColor: const Color(0xFFFF9934), // warm orange
         centerTitle: true,
       ),
-      body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2, // grid 2 kolom
-            crossAxisSpacing: 12,
-            mainAxisSpacing: 12,
-            childAspectRatio: 1,
+      body: Column(
+        children: [
+          // 🔎 Search bar
+          Padding(
+            padding: const EdgeInsets.all(12.0),
+            child: TextField(
+              controller: searchController,
+              onChanged: _filterPets,
+              decoration: InputDecoration(
+                hintText: "Cari hewan peliharaan...",
+                prefixIcon: const Icon(Icons.search),
+                filled: true,
+                fillColor: const Color(0xFFE1F1F2), // light gray
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(12),
+                  borderSide: BorderSide.none,
+                ),
+              ),
+            ),
           ),
-          itemCount: pets.length,
-          itemBuilder: (context, index) {
-            return PetCard(
-              pet: pets[index],
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (context) => DetailScreen(pet: pets[index]),
-                  ),
-                );
-              },
-            );
-          },
-        ),
+
+          // 🐾 Grid daftar hewan
+          Expanded(
+            child: Padding(
+              padding: const EdgeInsets.all(12.0),
+              child: filteredPets.isEmpty
+                  ? const Center(
+                      child: Text(
+                        "Hewan tidak ditemukan 🐾",
+                        style: TextStyle(fontFamily: "Poppins"),
+                      ),
+                    )
+                  : GridView.builder(
+                      gridDelegate:
+                          const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 2,
+                        crossAxisSpacing: 12,
+                        mainAxisSpacing: 12,
+                        childAspectRatio: 1,
+                      ),
+                      itemCount: filteredPets.length,
+                      itemBuilder: (context, index) {
+                        return PetCard(
+                          pet: filteredPets[index],
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) =>
+                                    DetailScreen(pet: filteredPets[index]),
+                              ),
+                            );
+                          },
+                        );
+                      },
+                    ),
+            ),
+          ),
+        ],
       ),
     );
   }

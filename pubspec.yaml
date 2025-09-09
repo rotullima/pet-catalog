@@ -65,11 +65,12 @@ flutter:
     - assets/images/capybara.jpg
     - assets/images/dragon.png
 
-
   fonts:
     - family: Poppins
       fonts:
         - asset: assets/fonts/Poppins-Regular.ttf
+        - asset: assets/fonts/Poppins-Medium.ttf
+          weight: 500
         - asset: assets/fonts/Poppins-Bold.ttf
           weight: 700
 
